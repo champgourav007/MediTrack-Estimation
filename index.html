@@ -1,1224 +1,1545 @@
-<!DOCTYPE html>
-<html lang="en">
+<tr>
+    <td class="row-header">2</td>
+    <td class="text-cell">Phase 1: Foundation</td>
+    <td class="number-cell">4</td>
+    <td class="number-cell">1</td>
+    <td class="number-<!DOCTYPE html>
+<html lang=" en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>MediTrack Project Estimation Excel</title>
-        <style>
-            body {
-                font-family: Calibri, Arial, sans-serif;
-                margin: 0;
-                padding: 20px;
-                background-color: #f0f0f0;
-                font-size: 11px;
-            }
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>MediTrack Project Estimation Excel</title>
+            <style>
+                body {
+                    font-family: Calibri, Arial, sans-serif;
+                    margin: 0;
+                    padding: 20px;
+                    background-color: #f0f0f0;
+                    font-size: 11px;
+                }
 
-            .excel-workbook {
-                background: white;
-                border: 2px solid #c0c0c0;
-                box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-            }
+                .excel-workbook {
+                    background: white;
+                    border: 2px solid #c0c0c0;
+                    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+                }
 
-            .sheet-tabs {
-                background: #f0f0f0;
-                border-bottom: 1px solid #c0c0c0;
-                padding: 0;
-                display: flex;
-            }
+                .sheet-tabs {
+                    background: #f0f0f0;
+                    border-bottom: 1px solid #c0c0c0;
+                    padding: 0;
+                    display: flex;
+                }
 
-            .sheet-tab {
-                padding: 8px 16px;
-                border-right: 1px solid #c0c0c0;
-                cursor: pointer;
-                background: #e0e0e0;
-                color: #333;
-                font-weight: bold;
-                font-size: 10px;
-            }
+                .sheet-tab {
+                    padding: 8px 16px;
+                    border-right: 1px solid #c0c0c0;
+                    cursor: pointer;
+                    background: #e0e0e0;
+                    color: #333;
+                    font-weight: bold;
+                    font-size: 10px;
+                }
 
-            .sheet-tab.active {
-                background: white;
-                border-bottom: 1px solid white;
-                margin-bottom: -1px;
-            }
+                .sheet-tab.active {
+                    background: white;
+                    border-bottom: 1px solid white;
+                    margin-bottom: -1px;
+                }
 
-            .sheet-content {
-                display: none;
-                padding: 0;
-            }
+                .sheet-content {
+                    display: none;
+                    padding: 0;
+                }
 
-            .sheet-content.active {
-                display: block;
-            }
+                .sheet-content.active {
+                    display: block;
+                }
 
-            table {
-                width: 100%;
-                border-collapse: collapse;
-                font-size: 11px;
-            }
+                table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    font-size: 11px;
+                }
 
-            .column-header {
-                background: #d0cece;
-                border: 1px solid #a6a6a6;
-                padding: 4px 8px;
-                text-align: center;
-                font-weight: bold;
-                font-size: 10px;
-                color: #333;
-            }
+                .column-header {
+                    background: #d0cece;
+                    border: 1px solid #a6a6a6;
+                    padding: 4px 8px;
+                    text-align: center;
+                    font-weight: bold;
+                    font-size: 10px;
+                    color: #333;
+                }
 
-            .row-header {
-                background: #d0cece;
-                border: 1px solid #a6a6a6;
-                padding: 4px 8px;
-                text-align: center;
-                font-weight: bold;
-                font-size: 10px;
-                width: 30px;
-            }
+                .row-header {
+                    background: #d0cece;
+                    border: 1px solid #a6a6a6;
+                    padding: 4px 8px;
+                    text-align: center;
+                    font-weight: bold;
+                    font-size: 10px;
+                    width: 30px;
+                }
 
-            th {
-                background: #4472c4;
-                color: white;
-                border: 1px solid #2e5198;
-                padding: 6px 8px;
-                text-align: center;
-                font-weight: bold;
-                font-size: 11px;
-            }
+                th {
+                    background: #4472c4;
+                    color: white;
+                    border: 1px solid #2e5198;
+                    padding: 6px 8px;
+                    text-align: center;
+                    font-weight: bold;
+                    font-size: 11px;
+                }
 
-            td {
-                border: 1px solid #d4d4d4;
-                padding: 4px 6px;
-                vertical-align: middle;
-                background: white;
-            }
+                td {
+                    border: 1px solid #d4d4d4;
+                    padding: 4px 6px;
+                    vertical-align: middle;
+                    background: white;
+                }
 
-            .text-cell {
-                text-align: left;
-            }
+                .text-cell {
+                    text-align: left;
+                }
 
-            .number-cell {
-                text-align: right;
-                font-family: 'Courier New', monospace;
-            }
+                .number-cell {
+                    text-align: right;
+                    font-family: 'Courier New', monospace;
+                }
 
-            .center-cell {
-                text-align: center;
-            }
+                .center-cell {
+                    text-align: center;
+                }
 
-            .total-row {
-                background: #dbe5f1;
-                font-weight: bold;
-            }
+                .total-row {
+                    background: #dbe5f1;
+                    font-weight: bold;
+                }
 
-            .section-header {
-                background: #b4c6e7;
-                font-weight: bold;
-                text-align: left;
-            }
+                .section-header {
+                    background: #b4c6e7;
+                    font-weight: bold;
+                    text-align: left;
+                }
 
-            .formula-cell {
-                background: #f2f2f2;
-                font-style: italic;
-            }
+                .formula-cell {
+                    background: #f2f2f2;
+                    font-style: italic;
+                }
 
-            .print-area {
-                page-break-after: always;
-            }
+                .print-area {
+                    page-break-after: always;
+                }
 
-            .currency {
-                color: #0070c0;
-            }
+                .currency {
+                    color: #0070c0;
+                }
 
-            .percentage {
-                color: #c55a11;
-            }
+                .percentage {
+                    color: #c55a11;
+                }
 
-            .header-info {
-                background: #f8f9fa;
-                padding: 10px;
-                border-bottom: 2px solid #4472c4;
-                margin-bottom: 0;
-            }
+                .header-info {
+                    background: #f8f9fa;
+                    padding: 10px;
+                    border-bottom: 2px solid #4472c4;
+                    margin-bottom: 0;
+                }
 
-            .header-info h2 {
-                color: #4472c4;
-                margin: 0 0 5px 0;
-                font-size: 16px;
-            }
+                .header-info h2 {
+                    color: #4472c4;
+                    margin: 0 0 5px 0;
+                    font-size: 16px;
+                }
 
-            .header-info p {
-                margin: 2px 0;
-                font-size: 10px;
-                color: #666;
-            }
-        </style>
-    </head>
+                .header-info p {
+                    margin: 2px 0;
+                    font-size: 10px;
+                    color: #666;
+                }
+            </style>
+        </head>
 
-    <body>
-        <div class="excel-workbook">
-            <div class="sheet-tabs">
-                <div class="sheet-tab active" onclick="showSheet('sheet1')">Work Breakdown</div>
-                <div class="sheet-tab" onclick="showSheet('sheet2')">Estimation Methods</div>
-                <div class="sheet-tab" onclick="showSheet('sheet3')">Timeline & Resources</div>
-                <div class="sheet-tab" onclick="showSheet('sheet4')">Risk Analysis</div>
-                <div class="sheet-tab" onclick="showSheet('sheet5')">Summary Dashboard</div>
-            </div>
-
-            <!-- Sheet 1: Work Breakdown Structure -->
-            <div id="sheet1" class="sheet-content active">
-                <div class="header-info">
-                    <h2>MediTrack - Work Breakdown Structure</h2>
-                    <p>Project: Cloud-Based Medicine Adherence App | Duration: 12 Weeks | Team: 6 Members</p>
-                    <p>Created: July 2025 | Version: 1.0 | All estimates in Man-Days (8 hours/day)</p>
+        <body>
+            <div class="excel-workbook">
+                <div class="sheet-tabs">
+                    <div class="sheet-tab active" onclick="showSheet('sheet1')">Work Breakdown</div>
+                    <div class="sheet-tab" onclick="showSheet('sheet2')">Estimation Methods</div>
+                    <div class="sheet-tab" onclick="showSheet('sheet3')">Timeline & Resources</div>
+                    <div class="sheet-tab" onclick="showSheet('sheet4')">Risk Analysis</div>
+                    <div class="sheet-tab" onclick="showSheet('sheet5')">Summary Dashboard</div>
                 </div>
-                <table>
-                    <tr>
-                        <td class="row-header">Row</td>
-                        <td class="column-header">A</td>
-                        <td class="column-header">B</td>
-                        <td class="column-header">C</td>
-                        <td class="column-header">D</td>
-                        <td class="column-header">E</td>
-                        <td class="column-header">F</td>
-                        <td class="column-header">G</td>
-                        <td class="column-header">H</td>
-                        <td class="column-header">I</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">1</td>
-                        <th>Epic/Feature</th>
-                        <th>User Story/Task</th>
-                        <th>Story Points</th>
-                        <th>BA Days</th>
-                        <th>Dev Days</th>
-                        <th>QA Days</th>
-                        <th>Total Days</th>
-                        <th>Priority</th>
-                        <th>Status</th>
-                    </tr>
-                    <tr>
-                        <td class="row-header">2</td>
-                        <td class="section-header" colspan="9"><strong>1. USER AUTHENTICATION & PROFILE
-                                MANAGEMENT</strong></td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">3</td>
-                        <td class="text-cell">User Registration</td>
-                        <td class="text-cell">Sign-up with email validation</td>
-                        <td class="number-cell">5</td>
-                        <td class="number-cell">1.0</td>
-                        <td class="number-cell">3.0</td>
-                        <td class="number-cell">2.0</td>
-                        <td class="number-cell">6.0</td>
-                        <td class="center-cell">High</td>
-                        <td class="center-cell">Not Started</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">4</td>
-                        <td class="text-cell">OAuth Integration</td>
-                        <td class="text-cell">Google/Apple OAuth 2.0</td>
-                        <td class="number-cell">8</td>
-                        <td class="number-cell">0.5</td>
-                        <td class="number-cell">4.0</td>
-                        <td class="number-cell">2.0</td>
-                        <td class="number-cell">6.5</td>
-                        <td class="center-cell">High</td>
-                        <td class="center-cell">Not Started</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">5</td>
-                        <td class="text-cell">Password Management</td>
-                        <td class="text-cell">Login, forgot password, reset</td>
-                        <td class="number-cell">5</td>
-                        <td class="number-cell">0.5</td>
-                        <td class="number-cell">2.5</td>
-                        <td class="number-cell">1.5</td>
-                        <td class="number-cell">4.5</td>
-                        <td class="center-cell">High</td>
-                        <td class="center-cell">Not Started</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">6</td>
-                        <td class="text-cell">User Profile</td>
-                        <td class="text-cell">Profile creation & editing</td>
-                        <td class="number-cell">3</td>
-                        <td class="number-cell">0.75</td>
-                        <td class="number-cell">2.0</td>
-                        <td class="number-cell">1.0</td>
-                        <td class="number-cell">3.75</td>
-                        <td class="center-cell">Medium</td>
-                        <td class="center-cell">Not Started</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">7</td>
-                        <td class="section-header" colspan="9"><strong>2. MEDICATION MANAGEMENT</strong></td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">8</td>
-                        <td class="text-cell">Medication Setup</td>
-                        <td class="text-cell">Add medication with details</td>
-                        <td class="number-cell">8</td>
-                        <td class="number-cell">1.5</td>
-                        <td class="number-cell">5.0</td>
-                        <td class="number-cell">2.5</td>
-                        <td class="number-cell">9.0</td>
-                        <td class="center-cell">High</td>
-                        <td class="center-cell">Not Started</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">9</td>
-                        <td class="text-cell">Dosage Scheduling</td>
-                        <td class="text-cell">Set time, frequency, duration</td>
-                        <td class="number-cell">8</td>
-                        <td class="number-cell">1.0</td>
-                        <td class="number-cell">4.0</td>
-                        <td class="number-cell">2.0</td>
-                        <td class="number-cell">7.0</td>
-                        <td class="center-cell">High</td>
-                        <td class="center-cell">Not Started</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">10</td>
-                        <td class="text-cell">Medication Library</td>
-                        <td class="text-cell">Search & select from database</td>
-                        <td class="number-cell">5</td>
-                        <td class="number-cell">1.0</td>
-                        <td class="number-cell">3.0</td>
-                        <td class="number-cell">1.5</td>
-                        <td class="number-cell">5.5</td>
-                        <td class="center-cell">Medium</td>
-                        <td class="center-cell">Not Started</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">11</td>
-                        <td class="text-cell">Edit/Delete Meds</td>
-                        <td class="text-cell">Modify existing medications</td>
-                        <td class="number-cell">3</td>
-                        <td class="number-cell">0.5</td>
-                        <td class="number-cell">2.0</td>
-                        <td class="number-cell">1.0</td>
-                        <td class="number-cell">3.5</td>
-                        <td class="center-cell">Medium</td>
-                        <td class="center-cell">Not Started</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">12</td>
-                        <td class="section-header" colspan="9"><strong>3. NOTIFICATION SYSTEM</strong></td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">13</td>
-                        <td class="text-cell">Local Notifications</td>
-                        <td class="text-cell">Reminder alerts on device</td>
-                        <td class="number-cell">5</td>
-                        <td class="number-cell">0.5</td>
-                        <td class="number-cell">3.5</td>
-                        <td class="number-cell">1.5</td>
-                        <td class="number-cell">5.5</td>
-                        <td class="center-cell">High</td>
-                        <td class="center-cell">Not Started</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">14</td>
-                        <td class="text-cell">Push Notifications</td>
-                        <td class="text-cell">Cloud-based reminders</td>
-                        <td class="number-cell">8</td>
-                        <td class="number-cell">0.75</td>
-                        <td class="number-cell">5.0</td>
-                        <td class="number-cell">2.0</td>
-                        <td class="number-cell">7.75</td>
-                        <td class="center-cell">High</td>
-                        <td class="center-cell">Not Started</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">15</td>
-                        <td class="text-cell">Notification Settings</td>
-                        <td class="text-cell">Customize notification preferences</td>
-                        <td class="number-cell">3</td>
-                        <td class="number-cell">0.5</td>
-                        <td class="number-cell">2.0</td>
-                        <td class="number-cell">1.0</td>
-                        <td class="number-cell">3.5</td>
-                        <td class="center-cell">Medium</td>
-                        <td class="center-cell">Not Started</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">16</td>
-                        <td class="section-header" colspan="9"><strong>4. TRACKING & ADHERENCE</strong></td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">17</td>
-                        <td class="text-cell">Dose Confirmation</td>
-                        <td class="text-cell">Mark medication as taken</td>
-                        <td class="number-cell">5</td>
-                        <td class="number-cell">0.75</td>
-                        <td class="number-cell">3.0</td>
-                        <td class="number-cell">1.5</td>
-                        <td class="number-cell">5.25</td>
-                        <td class="center-cell">High</td>
-                        <td class="center-cell">Not Started</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">18</td>
-                        <td class="text-cell">Missed Dose Handling</td>
-                        <td class="text-cell">Log and reschedule missed doses</td>
-                        <td class="number-cell">5</td>
-                        <td class="number-cell">0.75</td>
-                        <td class="number-cell">3.0</td>
-                        <td class="number-cell">1.5</td>
-                        <td class="number-cell">5.25</td>
-                        <td class="center-cell">Medium</td>
-                        <td class="center-cell">Not Started</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">19</td>
-                        <td class="text-cell">Adherence Dashboard</td>
-                        <td class="text-cell">Visual tracking interface</td>
-                        <td class="number-cell">8</td>
-                        <td class="number-cell">1.0</td>
-                        <td class="number-cell">4.0</td>
-                        <td class="number-cell">2.0</td>
-                        <td class="number-cell">7.0</td>
-                        <td class="center-cell">High</td>
-                        <td class="center-cell">Not Started</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">20</td>
-                        <td class="section-header" colspan="9"><strong>5. REPORTING SYSTEM</strong></td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">21</td>
-                        <td class="text-cell">Weekly Reports</td>
-                        <td class="text-cell">Adherence summary generation</td>
-                        <td class="number-cell">5</td>
-                        <td class="number-cell">1.0</td>
-                        <td class="number-cell">3.5</td>
-                        <td class="number-cell">1.5</td>
-                        <td class="number-cell">6.0</td>
-                        <td class="center-cell">Medium</td>
-                        <td class="center-cell">Not Started</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">22</td>
-                        <td class="text-cell">PDF Export</td>
-                        <td class="text-cell">Downloadable reports</td>
-                        <td class="number-cell">5</td>
-                        <td class="number-cell">0.5</td>
-                        <td class="number-cell">3.0</td>
-                        <td class="number-cell">1.0</td>
-                        <td class="number-cell">4.5</td>
-                        <td class="center-cell">Medium</td>
-                        <td class="center-cell">Not Started</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">23</td>
-                        <td class="section-header" colspan="9"><strong>6. ADMIN PANEL (WEB)</strong></td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">24</td>
-                        <td class="text-cell">User Management</td>
-                        <td class="text-cell">View and manage users</td>
-                        <td class="number-cell">5</td>
-                        <td class="number-cell">1.0</td>
-                        <td class="number-cell">4.0</td>
-                        <td class="number-cell">1.5</td>
-                        <td class="number-cell">6.5</td>
-                        <td class="center-cell">Low</td>
-                        <td class="center-cell">Not Started</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">25</td>
-                        <td class="text-cell">Usage Analytics</td>
-                        <td class="text-cell">Dashboard with trends</td>
-                        <td class="number-cell">8</td>
-                        <td class="number-cell">1.25</td>
-                        <td class="number-cell">5.0</td>
-                        <td class="number-cell">2.0</td>
-                        <td class="number-cell">8.25</td>
-                        <td class="center-cell">Low</td>
-                        <td class="center-cell">Not Started</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">26</td>
-                        <td class="total-row">
-                        <td><strong>TOTAL</strong></td>
-                        <td></td>
-                        <td class="number-cell"><strong>89</strong></td>
-                        <td class="number-cell"><strong>14.75</strong></td>
-                        <td class="number-cell"><strong>56.5</strong></td>
-                        <td class="number-cell"><strong>17.75</strong></td>
-                        <td class="number-cell"><strong>89.0</strong></td>
-                        <td></td>
-                        <td></td>
-                        </td>
-                    </tr>
-                </table>
-            </div>
 
-            <!-- Sheet 2: Estimation Methods -->
-            <div id="sheet2" class="sheet-content">
-                <div class="header-info">
-                    <h2>Estimation Methods Comparison</h2>
-                    <p>Multiple estimation techniques applied for accuracy validation</p>
-                </div>
-                <table>
-                    <tr>
-                        <td class="row-header">Row</td>
-                        <td class="column-header">A</td>
-                        <td class="column-header">B</td>
-                        <td class="column-header">C</td>
-                        <td class="column-header">D</td>
-                        <td class="column-header">E</td>
-                        <td class="column-header">F</td>
-                        <td class="column-header">G</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">1</td>
-                        <th>Estimation Method</th>
-                        <th>Total Days</th>
-                        <th>Confidence %</th>
-                        <th>Best Used For</th>
-                        <th>Advantages</th>
-                        <th>Limitations</th>
-                        <th>Weight</th>
-                    </tr>
-                    <tr>
-                        <td class="row-header">2</td>
-                        <td class="text-cell">Story Points (Bottom-up)</td>
-                        <td class="number-cell">89.0</td>
-                        <td class="percentage">85%</td>
-                        <td class="text-cell">Agile projects, detailed breakdown</td>
-                        <td class="text-cell">Detailed, team-based</td>
-                        <td class="text-cell">Time-intensive</td>
-                        <td class="percentage">50%</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">3</td>
-                        <td class="text-cell">PERT (Three-point)</td>
-                        <td class="number-cell">91.375</td>
-                        <td class="percentage">75%</td>
-                        <td class="text-cell">Risk assessment, uncertainty</td>
-                        <td class="text-cell">Handles uncertainty</td>
-                        <td class="text-cell">Requires experience</td>
-                        <td class="percentage">30%</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">4</td>
-                        <td class="text-cell">Analogous (Top-down)</td>
-                        <td class="number-cell">85.0</td>
-                        <td class="percentage">70%</td>
-                        <td class="text-cell">Early estimation, similar projects</td>
-                        <td class="text-cell">Quick, experience-based</td>
-                        <td class="text-cell">Less accurate</td>
-                        <td class="percentage">20%</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">5</td>
-                        <td class="total-row">
-                        <td><strong>FINAL WEIGHTED ESTIMATE</strong></td>
-                        <td class="number-cell"><strong>89.0</strong></td>
-                        <td class="percentage"><strong>80%</strong></td>
-                        <td class="text-cell"><strong>Comprehensive approach</strong></td>
-                        <td class="text-cell"><strong>Multiple validations</strong></td>
-                        <td class="text-cell"><strong>Complex process</strong></td>
-                        <td class="percentage"><strong>100%</strong></td>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">6</td>
-                        <td colspan="7"></td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">7</td>
-                        <td class="section-header" colspan="7"><strong>PERT ANALYSIS BREAKDOWN</strong></td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">8</td>
-                        <th>Component</th>
-                        <th>Optimistic</th>
-                        <th>Most Likely</th>
-                        <th>Pessimistic</th>
-                        <th>PERT Estimate</th>
-                        <th>Formula Used</th>
-                        <th>Variance</th>
-                    </tr>
-                    <tr>
-                        <td class="row-header">9</td>
-                        <td class="text-cell">Development</td>
-                        <td class="number-cell">47.5</td>
-                        <td class="number-cell">56.5</td>
-                        <td class="number-cell">70.0</td>
-                        <td class="number-cell">57.75</td>
-                        <td class="formula-cell">(O+4M+P)/6</td>
-                        <td class="number-cell">14.06</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">10</td>
-                        <td class="text-cell">QA Testing</td>
-                        <td class="number-cell">15.0</td>
-                        <td class="number-cell">17.75</td>
-                        <td class="number-cell">22.5</td>
-                        <td class="number-cell">18.5</td>
-                        <td class="formula-cell">(O+4M+P)/6</td>
-                        <td class="number-cell">1.56</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">11</td>
-                        <td class="text-cell">BA Analysis</td>
-                        <td class="number-cell">12.5</td>
-                        <td class="number-cell">14.75</td>
-                        <td class="number-cell">17.5</td>
-                        <td class="number-cell">15.125</td>
-                        <td class="formula-cell">(O+4M+P)/6</td>
-                        <td class="number-cell">0.69</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">12</td>
-                        <td class="total-row">
-                        <td><strong>TOTAL</strong></td>
-                        <td class="number-cell"><strong>75.0</strong></td>
-                        <td class="number-cell"><strong>89.0</strong></td>
-                        <td class="number-cell"><strong>110.0</strong></td>
-                        <td class="number-cell"><strong>91.375</strong></td>
-                        <td></td>
-                        <td class="number-cell"><strong>16.31</strong></td>
-                        </td>
-                    </tr>
-                </table>
-            </div>
+                <!-- Sheet 1: Work Breakdown Structure -->
+                <div id="sheet1" class="sheet-content active">
+                    <div class="header-info">
+                        <h2>MediTrack - Work Breakdown Structure</h2>
+                        <p>Project: Cloud-Based Medicine Adherence App | Duration: 12 Weeks | Team: 6 Members</p>
+                        <p>Created: July 2025 | Version: 1.0 | All estimates in Man-Days (8 hours/day)</p>
+                    </div>
+                    <table>
+                        <tr>
+                            <td class="row-header">Row</td>
+                            <td class="column-header">A</td>
+                            <td class="column-header">B</td>
+                            <td class="column-header">C</td>
+                            <td class="column-header">D</td>
+                            <td class="column-header">E</td>
+                            <td class="column-header">F</td>
+                            <td class="column-header">G</td>
+                            <td class="column-header">H</td>
+                            <td class="column-header">I</td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">1</td>
+                            <th>Epic/Feature</th>
+                            <th>User Story/Task</th>
+                            <th>Story Points</th>
+                            <th>BA Days</th>
+                            <th>Dev Days</th>
+                            <th>QA Days</th>
+                            <th>Total Days</th>
+                            <th>Priority</th>
+                            <th>Status</th>
+                        </tr>
+                        <tr>
+                            <td class="row-header">2</td>
+                            <td class="section-header" colspan="9"><strong>1. USER AUTHENTICATION & PROFILE
+                                    MANAGEMENT</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">3</td>
+                            <td class="text-cell">User Registration</td>
+                            <td class="text-cell">Sign-up with email validation</td>
+                            <td class="number-cell">5</td>
+                            <td class="number-cell">1.0</td>
+                            <td class="number-cell">3.0</td>
+                            <td class="number-cell">2.0</td>
+                            <td class="number-cell">6.0</td>
+                            <td class="center-cell">High</td>
+                            <td class="center-cell">Not Started</td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">4</td>
+                            <td class="text-cell">OAuth Integration</td>
+                            <td class="text-cell">Google/Apple OAuth 2.0</td>
+                            <td class="number-cell">8</td>
+                            <td class="number-cell">0.5</td>
+                            <td class="number-cell">4.0</td>
+                            <td class="number-cell">2.0</td>
+                            <td class="number-cell">6.5</td>
+                            <td class="center-cell">High</td>
+                            <td class="center-cell">Not Started</td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">5</td>
+                            <td class="text-cell">Password Management</td>
+                            <td class="text-cell">Login, forgot password, reset</td>
+                            <td class="number-cell">5</td>
+                            <td class="number-cell">0.5</td>
+                            <td class="number-cell">2.5</td>
+                            <td class="number-cell">1.5</td>
+                            <td class="number-cell">4.5</td>
+                            <td class="center-cell">High</td>
+                            <td class="center-cell">Not Started</td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">6</td>
+                            <td class="text-cell">User Profile</td>
+                            <td class="text-cell">Profile creation & editing</td>
+                            <td class="number-cell">3</td>
+                            <td class="number-cell">0.75</td>
+                            <td class="number-cell">2.0</td>
+                            <td class="number-cell">1.0</td>
+                            <td class="number-cell">3.75</td>
+                            <td class="center-cell">Medium</td>
+                            <td class="center-cell">Not Started</td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">7</td>
+                            <td class="section-header" colspan="9"><strong>2. MEDICATION MANAGEMENT</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">8</td>
+                            <td class="text-cell">Medication Setup</td>
+                            <td class="text-cell">Add medication with details</td>
+                            <td class="number-cell">8</td>
+                            <td class="number-cell">1.5</td>
+                            <td class="number-cell">5.0</td>
+                            <td class="number-cell">2.5</td>
+                            <td class="number-cell">9.0</td>
+                            <td class="center-cell">High</td>
+                            <td class="center-cell">Not Started</td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">9</td>
+                            <td class="text-cell">Dosage Scheduling</td>
+                            <td class="text-cell">Set time, frequency, duration</td>
+                            <td class="number-cell">8</td>
+                            <td class="number-cell">1.0</td>
+                            <td class="number-cell">4.0</td>
+                            <td class="number-cell">2.0</td>
+                            <td class="number-cell">7.0</td>
+                            <td class="center-cell">High</td>
+                            <td class="center-cell">Not Started</td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">10</td>
+                            <td class="text-cell">Medication Library</td>
+                            <td class="text-cell">Search & select from database</td>
+                            <td class="number-cell">5</td>
+                            <td class="number-cell">1.0</td>
+                            <td class="number-cell">3.0</td>
+                            <td class="number-cell">1.5</td>
+                            <td class="number-cell">5.5</td>
+                            <td class="center-cell">Medium</td>
+                            <td class="center-cell">Not Started</td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">11</td>
+                            <td class="text-cell">Edit/Delete Meds</td>
+                            <td class="text-cell">Modify existing medications</td>
+                            <td class="number-cell">3</td>
+                            <td class="number-cell">0.5</td>
+                            <td class="number-cell">2.0</td>
+                            <td class="number-cell">1.0</td>
+                            <td class="number-cell">3.5</td>
+                            <td class="center-cell">Medium</td>
+                            <td class="center-cell">Not Started</td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">12</td>
+                            <td class="section-header" colspan="9"><strong>3. NOTIFICATION SYSTEM</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">13</td>
+                            <td class="text-cell">Local Notifications</td>
+                            <td class="text-cell">Reminder alerts on device</td>
+                            <td class="number-cell">5</td>
+                            <td class="number-cell">0.5</td>
+                            <td class="number-cell">3.5</td>
+                            <td class="number-cell">1.5</td>
+                            <td class="number-cell">5.5</td>
+                            <td class="center-cell">High</td>
+                            <td class="center-cell">Not Started</td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">14</td>
+                            <td class="text-cell">Push Notifications</td>
+                            <td class="text-cell">Cloud-based reminders</td>
+                            <td class="number-cell">8</td>
+                            <td class="number-cell">0.75</td>
+                            <td class="number-cell">5.0</td>
+                            <td class="number-cell">2.0</td>
+                            <td class="number-cell">7.75</td>
+                            <td class="center-cell">High</td>
+                            <td class="center-cell">Not Started</td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">15</td>
+                            <td class="text-cell">Notification Settings</td>
+                            <td class="text-cell">Customize notification preferences</td>
+                            <td class="number-cell">3</td>
+                            <td class="number-cell">0.5</td>
+                            <td class="number-cell">2.0</td>
+                            <td class="number-cell">1.0</td>
+                            <td class="number-cell">3.5</td>
+                            <td class="center-cell">Medium</td>
+                            <td class="center-cell">Not Started</td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">16</td>
+                            <td class="section-header" colspan="9"><strong>4. TRACKING & ADHERENCE</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">17</td>
+                            <td class="text-cell">Dose Confirmation</td>
+                            <td class="text-cell">Mark medication as taken</td>
+                            <td class="number-cell">5</td>
+                            <td class="number-cell">0.75</td>
+                            <td class="number-cell">3.0</td>
+                            <td class="number-cell">1.5</td>
+                            <td class="number-cell">5.25</td>
+                            <td class="center-cell">High</td>
+                            <td class="center-cell">Not Started</td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">18</td>
+                            <td class="text-cell">Missed Dose Handling</td>
+                            <td class="text-cell">Log and reschedule missed doses</td>
+                            <td class="number-cell">5</td>
+                            <td class="number-cell">0.75</td>
+                            <td class="number-cell">3.0</td>
+                            <td class="number-cell">1.5</td>
+                            <td class="number-cell">5.25</td>
+                            <td class="center-cell">Medium</td>
+                            <td class="center-cell">Not Started</td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">19</td>
+                            <td class="text-cell">Adherence Dashboard</td>
+                            <td class="text-cell">Visual tracking interface</td>
+                            <td class="number-cell">8</td>
+                            <td class="number-cell">1.0</td>
+                            <td class="number-cell">4.0</td>
+                            <td class="number-cell">2.0</td>
+                            <td class="number-cell">7.0</td>
+                            <td class="center-cell">High</td>
+                            <td class="center-cell">Not Started</td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">20</td>
+                            <td class="section-header" colspan="9"><strong>5. REPORTING SYSTEM</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">21</td>
+                            <td class="text-cell">Weekly Reports</td>
+                            <td class="text-cell">Adherence summary generation</td>
+                            <td class="number-cell">5</td>
+                            <td class="number-cell">1.0</td>
+                            <td class="number-cell">3.5</td>
+                            <td class="number-cell">1.5</td>
+                            <td class="number-cell">6.0</td>
+                            <td class="center-cell">Medium</td>
+                            <td class="center-cell">Not Started</td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">22</td>
+                            <td class="text-cell">PDF Export</td>
+                            <td class="text-cell">Downloadable reports</td>
+                            <td class="number-cell">5</td>
+                            <td class="number-cell">0.5</td>
+                            <td class="number-cell">3.0</td>
+                            <td class="number-cell">1.0</td>
+                            <td class="number-cell">4.5</td>
+                            <td class="center-cell">Medium</td>
+                            <td class="center-cell">Not Started</td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">23</td>
+                            <td class="section-header" colspan="9"><strong>6. ADMIN PANEL (WEB)</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">24</td>
+                            <td class="text-cell">User Management</td>
+                            <td class="text-cell">View and manage users</td>
+                            <td class="number-cell">5</td>
+                            <td class="number-cell">1.0</td>
+                            <td class="number-cell">4.0</td>
+                            <td class="number-cell">1.5</td>
+                            <td class="number-cell">6.5</td>
+                            <td class="center-cell">Low</td>
+                            <td class="center-cell">Not Started</td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">25</td>
+                            <td class="text-cell">Usage Analytics</td>
+                            <td class="text-cell">Dashboard with trends</td>
+                            <td class="number-cell">8</td>
+                            <td class="number-cell">1.25</td>
+                            <td class="number-cell">5.0</td>
+                            <td class="number-cell">2.0</td>
+                            <td class="number-cell">8.25</td>
+                            <td class="center-cell">Low</td>
+                            <td class="center-cell">Not Started</td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">26</td>
+                            <td class="section-header" colspan="9"><strong>7. CAREGIVER & FAMILY INTEGRATION</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">27</td>
+                            <td class="text-cell">Caregiver Invitation</td>
+                            <td class="text-cell">Invite family members/caregivers</td>
+                            <td class="number-cell">5</td>
+                            <td class="number-cell">0.75</td>
+                            <td class="number-cell">3.0</td>
+                            <td class="number-cell">1.5</td>
+                            <td class="number-cell">5.25</td>
+                            <td class="center-cell">Medium</td>
+                            <td class="center-cell">Not Started</td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">28</td>
+                            <td class="text-cell">Caregiver Dashboard</td>
+                            <td class="text-cell">View patient adherence status</td>
+                            <td class="number-cell">8</td>
+                            <td class="number-cell">1.0</td>
+                            <td class="number-cell">4.5</td>
+                            <td class="number-cell">2.0</td>
+                            <td class="number-cell">7.5</td>
+                            <td class="center-cell">Medium</td>
+                            <td class="center-cell">Not Started</td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">29</td>
+                            <td class="text-cell">Emergency Alerts</td>
+                            <td class="text-cell">Alert caregivers on missed doses</td>
+                            <td class="number-cell">5</td>
+                            <td class="number-cell">0.5</td>
+                            <td class="number-cell">3.0</td>
+                            <td class="number-cell">1.5</td>
+                            <td class="number-cell">5.0</td>
+                            <td class="center-cell">High</td>
+                            <td class="center-cell">Not Started</td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">30</td>
+                            <td class="text-cell">Communication Hub</td>
+                            <td class="text-cell">In-app messaging between patient/caregiver</td>
+                            <td class="number-cell">8</td>
+                            <td class="number-cell">1.0</td>
+                            <td class="number-cell">5.0</td>
+                            <td class="number-cell">2.5</td>
+                            <td class="number-cell">8.5</td>
+                            <td class="center-cell">Low</td>
+                            <td class="center-cell">Not Started</td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">31</td>
+                            <td class="section-header" colspan="9"><strong>8. HEALTH INTEGRATION & MONITORING</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">32</td>
+                            <td class="text-cell">Symptom Tracking</td>
+                            <td class="text-cell">Log symptoms and side effects</td>
+                            <td class="number-cell">8</td>
+                            <td class="number-cell">1.0</td>
+                            <td class="number-cell">4.0</td>
+                            <td class="number-cell">2.0</td>
+                            <td class="number-cell">7.0</td>
+                            <td class="center-cell">Medium</td>
+                            <td class="center-cell">Not Started</td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">33</td>
+                            <td class="text-cell">Vital Signs Input</td>
+                            <td class="text-cell">Record blood pressure, weight, etc.</td>
+                            <td class="number-cell">5</td>
+                            <td class="number-cell">0.75</td>
+                            <td class="number-cell">3.0</td>
+                            <td class="number-cell">1.25</td>
+                            <td class="number-cell">5.0</td>
+                            <td class="center-cell">Medium</td>
+                            <td class="center-cell">Not Started</td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">34</td>
+                            <td class="text-cell">Health Trends</td>
+                            <td class="text-cell">Visual charts for health metrics</td>
+                            <td class="number-cell">8</td>
+                            <td class="number-cell">1.0</td>
+                            <td class="number-cell">4.5</td>
+                            <td class="number-cell">2.0</td>
+                            <td class="number-cell">7.5</td>
+                            <td class="center-cell">Low</td>
+                            <td class="center-cell">Not Started</td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">35</td>
+                            <td class="text-cell">Doctor Integration</td>
+                            <td class="text-cell">Share reports with healthcare providers</td>
+                            <td class="number-cell">13</td>
+                            <td class="number-cell">1.5</td>
+                            <td class="number-cell">6.0</td>
+                            <td class="number-cell">3.0</td>
+                            <td class="number-cell">10.5</td>
+                            <td class="center-cell">Medium</td>
+                            <td class="center-cell">Not Started</td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">36</td>
+                            <td class="section-header" colspan="9"><strong>9. GAMIFICATION & MOTIVATION</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">37</td>
+                            <td class="text-cell">Achievement System</td>
+                            <td class="text-cell">Badges for adherence milestones</td>
+                            <td class="number-cell">5</td>
+                            <td class="number-cell">0.5</td>
+                            <td class="number-cell">2.5</td>
+                            <td class="number-cell">1.0</td>
+                            <td class="number-cell">4.0</td>
+                            <td class="center-cell">Low</td>
+                            <td class="center-cell">Not Started</td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">38</td>
+                            <td class="text-cell">Streak Tracking</td>
+                            <td class="text-cell">Daily/weekly adherence streaks</td>
+                            <td class="number-cell">3</td>
+                            <td class="number-cell">0.5</td>
+                            <td class="number-cell">2.0</td>
+                            <td class="number-cell">1.0</td>
+                            <td class="number-cell">3.5</td>
+                            <td class="center-cell">Low</td>
+                            <td class="center-cell">Not Started</td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">39</td>
+                            <td class="text-cell">Progress Celebrations</td>
+                            <td class="text-cell">Motivational messages and rewards</td>
+                            <td class="number-cell">3</td>
+                            <td class="number-cell">0.25</td>
+                            <td class="number-cell">1.5</td>
+                            <td class="number-cell">0.75</td>
+                            <td class="number-cell">2.5</td>
+                            <td class="center-cell">Low</td>
+                            <td class="center-cell">Not Started</td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">40</td>
+                            <td class="text-cell">Goal Setting</td>
+                            <td class="text-cell">Custom adherence goals and targets</td>
+                            <td class="number-cell">5</td>
+                            <td class="number-cell">0.75</td>
+                            <td class="number-cell">2.5</td>
+                            <td class="number-cell">1.25</td>
+                            <td class="number-cell">4.5</td>
+                            <td class="center-cell">Medium</td>
+                            <td class="center-cell">Not Started</td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">41</td>
+                            <td class="section-header" colspan="9"><strong>10. ADVANCED FEATURES & INTEGRATIONS</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">42</td>
+                            <td class="text-cell">Pill Recognition</td>
+                            <td class="text-cell">Camera-based pill identification</td>
+                            <td class="number-cell">13</td>
+                            <td class="number-cell">1.0</td>
+                            <td class="number-cell">8.0</td>
+                            <td class="number-cell">3.0</td>
+                            <td class="number-cell">12.0</td>
+                            <td class="center-cell">Low</td>
+                            <td class="center-cell">Not Started</td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">43</td>
+                            <td class="text-cell">Smart Device Integration</td>
+                            <td class="text-cell">Connect with pill dispensers/smartwatches</td>
+                            <td class="number-cell">13</td>
+                            <td class="number-cell">1.25</td>
+                            <td class="number-cell">7.0</td>
+                            <td class="number-cell">3.5</td>
+                            <td class="number-cell">11.75</td>
+                            <td class="center-cell">Low</td>
+                            <td class="center-cell">Not Started</td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">44</td>
+                            <td class="text-cell">Pharmacy Integration</td>
+                            <td class="text-cell">Connect with local pharmacies for refills</td>
+                            <td class="number-cell">13</td>
+                            <td class="number-cell">2.0</td>
+                            <td class="number-cell">6.0</td>
+                            <td class="number-cell">3.0</td>
+                            <td class="number-cell">11.0</td>
+                            <td class="center-cell">Low</td>
+                            <td class="center-cell">Not Started</td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">45</td>
+                            <td class="text-cell">Voice Commands</td>
+                            <td class="text-cell">Voice-activated medication logging</td>
+                            <td class="number-cell">8</td>
+                            <td class="number-cell">0.5</td>
+                            <td class="number-cell">4.0</td>
+                            <td class="number-cell">2.0</td>
+                            <td class="number-cell">6.5</td>
+                            <td class="center-cell">Low</td>
+                            <td class="center-cell">Not Started</td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">46</td>
+                            <td class="section-header" colspan="9"><strong>11. DATA MANAGEMENT & SECURITY</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">47</td>
+                            <td class="text-cell">Data Backup & Sync</td>
+                            <td class="text-cell">Cloud backup and multi-device sync</td>
+                            <td class="number-cell">8</td>
+                            <td class="number-cell">0.75</td>
+                            <td class="number-cell">4.0</td>
+                            <td class="number-cell">2.0</td>
+                            <td class="number-cell">6.75</td>
+                            <td class="center-cell">High</td>
+                            <td class="center-cell">Not Started</td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">48</td>
+                            <td class="text-cell">Data Export</td>
+                            <td class="text-cell">Export data in multiple formats</td>
+                            <td class="number-cell">5</td>
+                            <td class="number-cell">0.5</td>
+                            <td class="number-cell">2.5</td>
+                            <td class="number-cell">1.0</td>
+                            <td class="number-cell">4.0</td>
+                            <td class="center-cell">Medium</td>
+                            <td class="center-cell">Not Started</td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">49</td>
+                            <td class="text-cell">Privacy Controls</td>
+                            <td class="text-cell">Granular privacy settings</td>
+                            <td class="number-cell">5</td>
+                            <td class="number-cell">1.0</td>
+                            <td class="number-cell">3.0</td>
+                            <td class="number-cell">1.5</td>
+                            <td class="number-cell">5.5</td>
+                            <td class="center-cell">High</td>
+                            <td class="center-cell">Not Started</td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">50</td>
+                            <td class="text-cell">Audit Trail</td>
+                            <td class="text-cell">Complete user activity logging</td>
+                            <td class="number-cell">5</td>
+                            <td class="number-cell">0.75</td>
+                            <td class="number-cell">3.0</td>
+                            <td class="number-cell">1.5</td>
+                            <td class="number-cell">5.25</td>
+                            <td class="center-cell">Medium</td>
+                            <td class="center-cell">Not Started</td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">51</td>
+                            <td class="section-header" colspan="9"><strong>12. ACCESSIBILITY & LOCALIZATION</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">52</td>
+                            <td class="text-cell">Accessibility Features</td>
+                            <td class="text-cell">Screen reader, large fonts, high contrast</td>
+                            <td class="number-cell">8</td>
+                            <td class="number-cell">1.0</td>
+                            <td class="number-cell">4.0</td>
+                            <td class="number-cell">2.5</td>
+                            <td class="number-cell">7.5</td>
+                            <td class="center-cell">Medium</td>
+                            <td class="center-cell">Not Started</td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">53</td>
+                            <td class="text-cell">Multi-language Support</td>
+                            <td class="text-cell">Support for Spanish, Hindi, Chinese</td>
+                            <td class="number-cell">8</td>
+                            <td class="number-cell">2.0</td>
+                            <td class="number-cell">3.0</td>
+                            <td class="number-cell">2.0</td>
+                            <td class="number-cell">7.0</td>
+                            <td class="center-cell">Low</td>
+                            <td class="center-cell">Not Started</td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">54</td>
+                            <td class="text-cell">Cultural Customization</td>
+                            <td class="text-cell">Region-specific medication schedules</td>
+                            <td class="number-cell">5</td>
+                            <td class="number-cell">1.0</td>
+                            <td class="number-cell">2.0</td>
+                            <td class="number-cell">1.0</td>
+                            <td class="number-cell">4.0</td>
+                            <td class="center-cell">Low</td>
+                            <td class="center-cell">Not Started</td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">55</td>
+                            <td class="text-cell">Offline Mode</td>
+                            <td class="text-cell">Core functionality without internet</td>
+                            <td class="number-cell">8</td>
+                            <td class="number-cell">0.75</td>
+                            <td class="number-cell">4.5</td>
+                            <td class="number-cell">2.0</td>
+                            <td class="number-cell">7.25</td>
+                            <td class="center-cell">Medium</td>
+                            <td class="center-cell">Not Started</td>
+                        </tr>
+                        <tr>
+                            <td class="row-header">56</td>
+                            <td class="total-row">
+                            <td><strong>TOTAL</strong></td>
+                            <td></td>
+                            <td class="number-cell"><strong>224</strong></td>
+                            <td class="number-cell"><strong>36.0</strong></td>
+                            <td class="number-cell"><strong>140.0</strong></td>
+                            <td class="number-cell"><strong>48.0</strong></td>
+                            <td class="number-cell"><strong>224.0</strong></td>
+                            <td></td>
+                            <td></td>
+    </td>
+</tr>
+</table>
+</div>
 
-            <!-- Sheet 3: Timeline & Resources -->
-            <div id="sheet3" class="sheet-content">
-                <div class="header-info">
-                    <h2>Timeline & Resource Allocation</h2>
-                    <p>12-Week development schedule with phase-wise breakdown</p>
-                </div>
-                <table>
-                    <tr>
-                        <td class="row-header">Row</td>
-                        <td class="column-header">A</td>
-                        <td class="column-header">B</td>
-                        <td class="column-header">C</td>
-                        <td class="column-header">D</td>
-                        <td class="column-header">E</td>
-                        <td class="column-header">F</td>
-                        <td class="column-header">G</td>
-                        <td class="column-header">H</td>
-                        <td class="column-header">I</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">1</td>
-                        <th>Phase</th>
-                        <th>Duration (Weeks)</th>
-                        <th>Start Week</th>
-                        <th>End Week</th>
-                        <th>BA Days</th>
-                        <th>Dev Days</th>
-                        <th>QA Days</th>
-                        <th>Key Deliverables</th>
-                        <th>Milestone</th>
-                    </tr>
-                    <tr>
-                        <td class="row-header">2</td>
-                        <td class="text-cell">Phase 1: Foundation</td>
-                        <td class="number-cell">3</td>
-                        <td class="number-cell">1</td>
-                        <td class="number-cell">3</td>
-                        <td class="number-cell">3.75</td>
-                        <td class="number-cell">15.0</td>
-                        <td class="number-cell">5.0</td>
-                        <td class="text-cell">User Auth, Basic Profile, Project Setup</td>
-                        <td class="text-cell">User can register & login</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">3</td>
-                        <td class="text-cell">Phase 2: Core Features</td>
-                        <td class="number-cell">4</td>
-                        <td class="number-cell">4</td>
-                        <td class="number-cell">7</td>
-                        <td class="number-cell">6.25</td>
-                        <td class="number-cell">22.5</td>
-                        <td class="number-cell">7.5</td>
-                        <td class="text-cell">Medication Management, Notifications</td>
-                        <td class="text-cell">Users can track medications</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">4</td>
-                        <td class="text-cell">Phase 3: Advanced</td>
-                        <td class="number-cell">3</td>
-                        <td class="number-cell">8</td>
-                        <td class="number-cell">10</td>
-                        <td class="number-cell">3.75</td>
-                        <td class="number-cell">15.0</td>
-                        <td class="number-cell">4.0</td>
-                        <td class="text-cell">Reports, Admin Panel, Integration</td>
-                        <td class="text-cell">Complete feature set</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">5</td>
-                        <td class="text-cell">Phase 4: Launch Prep</td>
-                        <td class="number-cell">2</td>
-                        <td class="number-cell">11</td>
-                        <td class="number-cell">12</td>
-                        <td class="number-cell">1.0</td>
-                        <td class="number-cell">4.0</td>
-                        <td class="number-cell">1.25</td>
-                        <td class="text-cell">Final Testing, Bug Fixes, Deployment</td>
-                        <td class="text-cell">Production ready</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">6</td>
-                        <td class="total-row">
-                        <td><strong>TOTAL</strong></td>
-                        <td class="number-cell"><strong>12</strong></td>
-                        <td></td>
-                        <td></td>
-                        <td class="number-cell"><strong>14.75</strong></td>
-                        <td class="number-cell"><strong>56.5</strong></td>
-                        <td class="number-cell"><strong>17.75</strong></td>
-                        <td></td>
-                        <td></td>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">7</td>
-                        <td colspan="9"></td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">8</td>
-                        <td class="section-header" colspan="9"><strong>TEAM UTILIZATION ANALYSIS</strong></td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">9</td>
-                        <th>Role</th>
-                        <th>Team Size</th>
-                        <th>Total Days</th>
-                        <th>Days/Week</th>
-                        <th>Hours/Week</th>
-                        <th>Utilization %</th>
-                        <th>Available Capacity</th>
-                        <th>Workload Status</th>
-                        <th>Recommendations</th>
-                    </tr>
-                    <tr>
-                        <td class="row-header">10</td>
-                        <td class="text-cell">Business Analyst</td>
-                        <td class="number-cell">1</td>
-                        <td class="number-cell">14.75</td>
-                        <td class="number-cell">1.23</td>
-                        <td class="number-cell">9.8</td>
-                        <td class="percentage">25%</td>
-                        <td class="text-cell">Can support other projects</td>
-                        <td class="text-cell">Under-utilized</td>
-                        <td class="text-cell">Assign to multiple projects</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">11</td>
-                        <td class="text-cell">Senior Developers</td>
-                        <td class="number-cell">3</td>
-                        <td class="number-cell">56.5</td>
-                        <td class="number-cell">1.57</td>
-                        <td class="number-cell">12.5</td>
-                        <td class="percentage">32%</td>
-                        <td class="text-cell">Good balance with buffer</td>
-                        <td class="text-cell">Optimal</td>
-                        <td class="text-cell">Sustainable pace</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">12</td>
-                        <td class="text-cell">QA Engineers</td>
-                        <td class="number-cell">2</td>
-                        <td class="number-cell">17.75</td>
-                        <td class="number-cell">0.74</td>
-                        <td class="number-cell">5.9</td>
-                        <td class="percentage">15%</td>
-                        <td class="text-cell">Significant spare capacity</td>
-                        <td class="text-cell">Under-utilized</td>
-                        <td class="text-cell">Cross-training opportunity</td>
-                    </tr>
-                </table>
-            </div>
+<!-- Sheet 2: Estimation Methods -->
+<div id="sheet2" class="sheet-content">
+    <div class="header-info">
+        <h2>Estimation Methods Comparison</h2>
+        <p>Multiple estimation techniques applied for accuracy validation</p>
+    </div>
+    <table>
+        <tr>
+            <td class="row-header">Row</td>
+            <td class="column-header">A</td>
+            <td class="column-header">B</td>
+            <td class="column-header">C</td>
+            <td class="column-header">D</td>
+            <td class="column-header">E</td>
+            <td class="column-header">F</td>
+            <td class="column-header">G</td>
+        </tr>
+        <tr>
+            <td class="row-header">1</td>
+            <th>Estimation Method</th>
+            <th>Total Days</th>
+            <th>Confidence %</th>
+            <th>Best Used For</th>
+            <th>Advantages</th>
+            <th>Limitations</th>
+            <th>Weight</th>
+        </tr>
+        <tr>
+            <td class="row-header">2</td>
+            <td class="text-cell">Story Points (Bottom-up)</td>
+            <td class="number-cell">89.0</td>
+            <td class="percentage">85%</td>
+            <td class="text-cell">Agile projects, detailed breakdown</td>
+            <td class="text-cell">Detailed, team-based</td>
+            <td class="text-cell">Time-intensive</td>
+            <td class="percentage">50%</td>
+        </tr>
+        <tr>
+            <td class="row-header">3</td>
+            <td class="text-cell">PERT (Three-point)</td>
+            <td class="number-cell">91.375</td>
+            <td class="percentage">75%</td>
+            <td class="text-cell">Risk assessment, uncertainty</td>
+            <td class="text-cell">Handles uncertainty</td>
+            <td class="text-cell">Requires experience</td>
+            <td class="percentage">30%</td>
+        </tr>
+        <tr>
+            <td class="row-header">4</td>
+            <td class="text-cell">Analogous (Top-down)</td>
+            <td class="number-cell">85.0</td>
+            <td class="percentage">70%</td>
+            <td class="text-cell">Early estimation, similar projects</td>
+            <td class="text-cell">Quick, experience-based</td>
+            <td class="text-cell">Less accurate</td>
+            <td class="percentage">20%</td>
+        </tr>
+        <tr>
+            <td class="row-header">5</td>
+            <td class="total-row">
+            <td><strong>FINAL WEIGHTED ESTIMATE</strong></td>
+            <td class="number-cell"><strong>89.0</strong></td>
+            <td class="percentage"><strong>80%</strong></td>
+            <td class="text-cell"><strong>Comprehensive approach</strong></td>
+            <td class="text-cell"><strong>Multiple validations</strong></td>
+            <td class="text-cell"><strong>Complex process</strong></td>
+            <td class="percentage"><strong>100%</strong></td>
+            </td>
+        </tr>
+        <tr>
+            <td class="row-header">6</td>
+            <td colspan="7"></td>
+        </tr>
+        <tr>
+            <td class="row-header">7</td>
+            <td class="section-header" colspan="7"><strong>PERT ANALYSIS BREAKDOWN</strong></td>
+        </tr>
+        <tr>
+            <td class="row-header">8</td>
+            <th>Component</th>
+            <th>Optimistic</th>
+            <th>Most Likely</th>
+            <th>Pessimistic</th>
+            <th>PERT Estimate</th>
+            <th>Formula Used</th>
+            <th>Variance</th>
+        </tr>
+        <tr>
+            <td class="row-header">9</td>
+            <td class="text-cell">Development</td>
+            <td class="number-cell">47.5</td>
+            <td class="number-cell">56.5</td>
+            <td class="number-cell">70.0</td>
+            <td class="number-cell">57.75</td>
+            <td class="formula-cell">(O+4M+P)/6</td>
+            <td class="number-cell">14.06</td>
+        </tr>
+        <tr>
+            <td class="row-header">10</td>
+            <td class="text-cell">QA Testing</td>
+            <td class="number-cell">15.0</td>
+            <td class="number-cell">17.75</td>
+            <td class="number-cell">22.5</td>
+            <td class="number-cell">18.5</td>
+            <td class="formula-cell">(O+4M+P)/6</td>
+            <td class="number-cell">1.56</td>
+        </tr>
+        <tr>
+            <td class="row-header">11</td>
+            <td class="text-cell">BA Analysis</td>
+            <td class="number-cell">12.5</td>
+            <td class="number-cell">14.75</td>
+            <td class="number-cell">17.5</td>
+            <td class="number-cell">15.125</td>
+            <td class="formula-cell">(O+4M+P)/6</td>
+            <td class="number-cell">0.69</td>
+        </tr>
+        <tr>
+            <td class="row-header">12</td>
+            <td class="total-row">
+            <td><strong>TOTAL</strong></td>
+            <td class="number-cell"><strong>75.0</strong></td>
+            <td class="number-cell"><strong>89.0</strong></td>
+            <td class="number-cell"><strong>110.0</strong></td>
+            <td class="number-cell"><strong>91.375</strong></td>
+            <td></td>
+            <td class="number-cell"><strong>16.31</strong></td>
+            </td>
+        </tr>
+    </table>
+</div>
 
-            <!-- Sheet 4: Risk Analysis -->
-            <div id="sheet4" class="sheet-content">
-                <div class="header-info">
-                    <h2>Risk Analysis & Mitigation</h2>
-                    <p>Comprehensive risk assessment with mitigation strategies</p>
-                </div>
-                <table>
-                    <tr>
-                        <td class="row-header">Row</td>
-                        <td class="column-header">A</td>
-                        <td class="column-header">B</td>
-                        <td class="column-header">C</td>
-                        <td class="column-header">D</td>
-                        <td class="column-header">E</td>
-                        <td class="column-header">F</td>
-                        <td class="column-header">G</td>
-                        <td class="column-header">H</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">1</td>
-                        <th>Risk Category</th>
-                        <th>Risk Description</th>
-                        <th>Probability</th>
-                        <th>Impact</th>
-                        <th>Risk Score</th>
-                        <th>Mitigation Strategy</th>
-                        <th>Contingency Plan</th>
-                        <th>Owner</th>
-                    </tr>
-                    <tr>
-                        <td class="row-header">2</td>
-                        <td class="section-header" colspan="8"><strong>HIGH RISK ITEMS</strong></td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">3</td>
-                        <td class="text-cell">Technical</td>
-                        <td class="text-cell">OAuth Integration Complexity</td>
-                        <td class="percentage">70%</td>
-                        <td class="number-cell">8</td>
-                        <td class="number-cell">5.6</td>
-                        <td class="text-cell">Start OAuth early, use Firebase Auth</td>
-                        <td class="text-cell">Implement basic auth as backup</td>
-                        <td class="text-cell">Tech Lead</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">4</td>
-                        <td class="text-cell">Technical</td>
-                        <td class="text-cell">Push Notification Platform Issues</td>
-                        <td class="percentage">60%</td>
-                        <td class="number-cell">7</td>
-                        <td class="number-cell">4.2</td>
-                        <td class="text-cell">Use proven FCM service</td>
-                        <td class="text-cell">Local notifications only for MVP</td>
-                        <td class="text-cell">Mobile Dev</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">5</td>
-                        <td class="text-cell">Compliance</td>
-                        <td class="text-cell">HIPAA Compliance Requirements</td>
-                        <td class="percentage">50%</td>
-                        <td class="number-cell">9</td>
-                        <td class="number-cell">4.5</td>
-                        <td class="text-cell">Consult legal early, use AWS HIPAA</td>
-                        <td class="text-cell">Reduce data collection scope</td>
-                        <td class="text-cell">Project Manager</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">6</td>
-                        <td class="section-header" colspan="8"><strong>MEDIUM RISK ITEMS</strong></td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">7</td>
-                        <td class="text-cell">Technical</td>
-                        <td class="text-cell">Cross-platform Compatibility</td>
-                        <td class="percentage">40%</td>
-                        <td class="number-cell">6</td>
-                        <td class="number-cell">2.4</td>
-                        <td class="text-cell">Use React Native framework</td>
-                        <td class="text-cell">Prioritize one platform for MVP</td>
-                        <td class="text-cell">Mobile Dev</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">8</td>
-                        <td class="text-cell">Performance</td>
-                        <td class="text-cell">Database Performance Issues</td>
-                        <td class="percentage">30%</td>
-                        <td class="number-cell">7</td>
-                        <td class="number-cell">2.1</td>
-                        <td class="text-cell">Implement indexing early</td>
-                        <td class="text-cell">Use database optimization tools</td>
-                        <td class="text-cell">Backend Dev</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">9</td>
-                        <td class="text-cell">UX</td>
-                        <td class="text-cell">Complex User Interface</td>
-                        <td class="percentage">35%</td>
-                        <td class="number-cell">5</td>
-                        <td class="number-cell">1.75</td>
-                        <td class="text-cell">Early user testing sessions</td>
-                        <td class="text-cell">Simplify UI for MVP</td>
-                        <td class="text-cell">UX Designer</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">10</td>
-                        <td class="section-header" colspan="8"><strong>LOW RISK ITEMS</strong></td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">11</td>
-                        <td class="text-cell">Technical</td>
-                        <td class="text-cell">Basic CRUD Operations</td>
-                        <td class="percentage">10%</td>
-                        <td class="number-cell">3</td>
-                        <td class="number-cell">0.3</td>
-                        <td class="text-cell">Use established frameworks</td>
-                        <td class="text-cell">Standard implementation</td>
-                        <td class="text-cell">Developer</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">12</td>
-                        <td class="text-cell">Technical</td>
-                        <td class="text-cell">PDF Report Generation</td>
-                        <td class="percentage">15%</td>
-                        <td class="number-cell">4</td>
-                        <td class="number-cell">0.6</td>
-                        <td class="text-cell">Use jsPDF library</td>
-                        <td class="text-cell">Simple text reports</td>
-                        <td class="text-cell">Frontend Dev</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">13</td>
-                        <td colspan="8"></td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">14</td>
-                        <td class="section-header" colspan="8"><strong>KEY ASSUMPTIONS</strong></td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">15</td>
-                        <th>Category</th>
-                        <th>Assumption</th>
-                        <th>Confidence</th>
-                        <th>Impact if Wrong</th>
-                        <th>Validation Method</th>
-                        <th>Validation Date</th>
-                        <th>Status</th>
-                        <th>Notes</th>
-                    </tr>
-                    <tr>
-                        <td class="row-header">16</td>
-                        <td class="text-cell">Technical</td>
-                        <td class="text-cell">Team has React Native experience</td>
-                        <td class="percentage">80%</td>
-                        <td class="number-cell">7</td>
-                        <td class="text-cell">Skills assessment</td>
-                        <td class="text-cell">Week 1</td>
-                        <td class="text-cell">Pending</td>
-                        <td class="text-cell">Critical for timeline</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">17</td>
-                        <td class="text-cell">Business</td>
-                        <td class="text-cell">Requirements are stable</td>
-                        <td class="percentage">70%</td>
-                        <td class="number-cell">8</td>
-                        <td class="text-cell">Stakeholder agreement</td>
-                        <td class="text-cell">Week 1</td>
-                        <td class="text-cell">Pending</td>
-                        <td class="text-cell">High change risk</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">18</td>
-                        <td class="text-cell">Resource</td>
-                        <td class="text-cell">Team available full-time</td>
-                        <td class="percentage">90%</td>
-                        <td class="number-cell">9</td>
-                        <td class="text-cell">Resource planning</td>
-                        <td class="text-cell">Week 1</td>
-                        <td class="text-cell">Confirmed</td>
-                        <td class="text-cell">No competing priorities</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">19</td>
-                        <td class="text-cell">Technical</td>
-                        <td class="text-cell">Cloud infrastructure approved</td>
-                        <td class="percentage">85%</td>
-                        <td class="number-cell">6</td>
-                        <td class="text-cell">Budget approval</td>
-                        <td class="text-cell">Week 1</td>
-                        <td class="text-cell">Pending</td>
-                        <td class="text-cell">AWS/Azure decision needed</td>
-                    </tr>
-                </table>
-            </div>
+<!-- Sheet 3: Timeline & Resources -->
+<div id="sheet3" class="sheet-content">
+    <div class="header-info">
+        <h2>Timeline & Resource Allocation</h2>
+        <p>12-Week development schedule with phase-wise breakdown</p>
+    </div>
+    <table>
+        <tr>
+            <td class="row-header">Row</td>
+            <td class="column-header">A</td>
+            <td class="column-header">B</td>
+            <td class="column-header">C</td>
+            <td class="column-header">D</td>
+            <td class="column-header">E</td>
+            <td class="column-header">F</td>
+            <td class="column-header">G</td>
+            <td class="column-header">H</td>
+            <td class="column-header">I</td>
+        </tr>
+        <tr>
+            <td class="row-header">1</td>
+            <th>Phase</th>
+            <th>Duration (Weeks)</th>
+            <th>Start Week</th>
+            <th>End Week</th>
+            <th>BA Days</th>
+            <th>Dev Days</th>
+            <th>QA Days</th>
+            <th>Key Deliverables</th>
+            <th>Milestone</th>
+        </tr>
+        <tr>
+            <td class="row-header">2</td>
+            <td class="text-cell">Phase 1: Foundation (MVP Core)</td>
+            <td class="number-cell">6</td>
+            <td class="number-cell">1</td>
+            <td class="number-cell">6</td>
+            <td class="number-cell">8.0</td>
+            <td class="number-cell">30.0</td>
+            <td class="number-cell">12.0</td>
+            <td class="text-cell">User Auth, Basic Profile, Core Med Tracking</td>
+            <td class="text-cell">Users can register & track basic meds</td>
+        </tr>
+        <tr>
+            <td class="row-header">3</td>
+            <td class="text-cell">Phase 2: Core Features</td>
+            <td class="number-cell">8</td>
+            <td class="number-cell">7</td>
+            <td class="number-cell">14</td>
+            <td class="number-cell">12.0</td>
+            <td class="number-cell">45.0</td>
+            <td class="number-cell">18.0</td>
+            <td class="text-cell">Notifications, Adherence Tracking, Reports</td>
+            <td class="text-cell">Complete medication management</td>
+        </tr>
+        <tr>
+            <td class="row-header">4</td>
+            <td class="text-cell">Phase 3: Enhanced Features</td>
+            <td class="number-cell">8</td>
+            <td class="number-cell">15</td>
+            <td class="number-cell">22</td>
+            <td class="number-cell">10.0</td>
+            <td class="number-cell">40.0</td>
+            <td class="number-cell">12.0</td>
+            <td class="text-cell">Caregiver Integration, Health Monitoring</td>
+            <td class="text-cell">Family connected healthcare</td>
+        </tr>
+        <tr>
+            <td class="row-header">5</td>
+            <td class="text-cell">Phase 4: Advanced Features</td>
+            <td class="number-cell">6</td>
+            <td class="number-cell">23</td>
+            <td class="number-cell">28</td>
+            <td class="number-cell">6.0</td>
+            <td class="number-cell">25.0</td>
+            <td class="number-cell">6.0</td>
+            <td class="text-cell">Smart Integrations, Advanced Analytics</td>
+            <td class="text-cell">AI-powered features</td>
+        </tr>
+        <tr>
+            <td class="row-header">6</td>
+            <td class="total-row">
+            <td><strong>TOTAL</strong></td>
+            <td class="number-cell"><strong>28</strong></td>
+            <td></td>
+            <td></td>
+            <td class="number-cell"><strong>36.0</strong></td>
+            <td class="number-cell"><strong>140.0</strong></td>
+            <td class="number-cell"><strong>48.0</strong></td>
+            <td></td>
+            <td></td>
+            </td>
+        </tr>
+        <tr>
+            <td class="row-header">7</td>
+            <td colspan="9"></td>
+        </tr>
+        <tr>
+            <td class="row-header">8</td>
+            <td class="section-header" colspan="9"><strong>TEAM UTILIZATION ANALYSIS (EXPANDED PROJECT)</strong></td>
+        </tr>
+        <tr>
+            <td class="row-header">9</td>
+            <th>Role</th>
+            <th>Team Size</th>
+            <th>Total Days</th>
+            <th>Days/Week</th>
+            <th>Hours/Week</th>
+            <th>Utilization %</th>
+            <th>Available Capacity</th>
+            <th>Workload Status</th>
+            <th>Recommendations</th>
+        </tr>
+        <tr>
+            <td class="row-header">10</td>
+            <td class="text-cell">Business Analyst</td>
+            <td class="number-cell">2</td>
+            <td class="number-cell">36.0</td>
+            <td class="number-cell">1.29</td>
+            <td class="number-cell">10.3</td>
+            <td class="percentage">26%</td>
+            <td class="text-cell">Good balance for requirements</td>
+            <td class="text-cell">Optimal</td>
+            <td class="text-cell">Can handle complex analysis</td>
+        </tr>
+        <tr>
+            <td class="row-header">11</td>
+            <td class="text-cell">Senior Developers</td>
+            <td class="number-cell">5</td>
+            <td class="number-cell">140.0</td>
+            <td class="number-cell">1.0</td>
+            <td class="number-cell">8.0</td>
+            <td class="percentage">20%</td>
+            <td class="text-cell">Sustainable pace</td>
+            <td class="text-cell">Optimal</td>
+            <td class="text-cell">Good for complex features</td>
+        </tr>
+        <tr>
+            <td class="row-header">12</td>
+            <td class="text-cell">QA Engineers</td>
+            <td class="number-cell">3</td>
+            <td class="number-cell">48.0</td>
+            <td class="number-cell">0.57</td>
+            <td class="number-cell">4.6</td>
+            <td class="percentage">11%</td>
+            <td class="text-cell">Light load, good for quality</td>
+            <td class="text-cell">Under-utilized</td>
+            <td class="text-cell">Add automation testing</td>
+        </tr>
+    </table>
+</div>
 
-            <!-- Sheet 5: Summary Dashboard -->
-            <div id="sheet5" class="sheet-content">
-                <div class="header-info">
-                    <h2>Executive Summary Dashboard</h2>
-                    <p>Key metrics and KPIs for project tracking</p>
-                </div>
-                <table>
-                    <tr>
-                        <td class="row-header">Row</td>
-                        <td class="column-header">A</td>
-                        <td class="column-header">B</td>
-                        <td class="column-header">C</td>
-                        <td class="column-header">D</td>
-                        <td class="column-header">E</td>
-                        <td class="column-header">F</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">1</td>
-                        <td class="section-header" colspan="6"><strong>PROJECT OVERVIEW</strong></td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">2</td>
-                        <th>Metric</th>
-                        <th>Value</th>
-                        <th>Unit</th>
-                        <th>Target</th>
-                        <th>Status</th>
-                        <th>Comments</th>
-                    </tr>
-                    <tr>
-                        <td class="row-header">3</td>
-                        <td class="text-cell">Total Project Duration</td>
-                        <td class="number-cell">12</td>
-                        <td class="text-cell">Weeks</td>
-                        <td class="number-cell">12</td>
-                        <td class="center-cell">✓ On Track</td>
-                        <td class="text-cell">Includes 20% buffer</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">4</td>
-                        <td class="text-cell">Total Story Points</td>
-                        <td class="number-cell">89</td>
-                        <td class="text-cell">Points</td>
-                        <td class="number-cell">85-95</td>
-                        <td class="center-cell">✓ On Track</td>
-                        <td class="text-cell">Within expected range</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">5</td>
-                        <td class="text-cell">Total Effort</td>
-                        <td class="number-cell">89</td>
-                        <td class="text-cell">Man-Days</td>
-                        <td class="number-cell">80-100</td>
-                        <td class="center-cell">✓ On Track</td>
-                        <td class="text-cell">Balanced across roles</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">6</td>
-                        <td class="text-cell">Team Size</td>
-                        <td class="number-cell">6</td>
-                        <td class="text-cell">People</td>
-                        <td class="number-cell">5-7</td>
-                        <td class="center-cell">✓ Optimal</td>
-                        <td class="text-cell">Right size for project</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">7</td>
-                        <td class="text-cell">Average Velocity</td>
-                        <td class="number-cell">18</td>
-                        <td class="text-cell">Points/Sprint</td>
-                        <td class="number-cell">15-20</td>
-                        <td class="center-cell">✓ Good</td>
-                        <td class="text-cell">Based on team capacity</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">8</td>
-                        <td colspan="6"></td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">9</td>
-                        <td class="section-header" colspan="6"><strong>EFFORT BREAKDOWN BY ROLE</strong></td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">10</td>
-                        <th>Role</th>
-                        <th>Days</th>
-                        <th>Percentage</th>
-                        <th>Utilization</th>
-                        <th>Cost Rate</th>
-                        <th>Total Cost</th>
-                    </tr>
-                    <tr>
-                        <td class="row-header">11</td>
-                        <td class="text-cell">Business Analyst</td>
-                        <td class="number-cell">14.75</td>
-                        <td class="percentage">16.6%</td>
-                        <td class="percentage">25%</td>
-                        <td class="currency">$800</td>
-                        <td class="currency">$11,800</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">12</td>
-                        <td class="text-cell">Senior Developers</td>
-                        <td class="number-cell">56.5</td>
-                        <td class="percentage">63.5%</td>
-                        <td class="percentage">32%</td>
-                        <td class="currency">$1,000</td>
-                        <td class="currency">$56,500</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">13</td>
-                        <td class="text-cell">QA Engineers</td>
-                        <td class="number-cell">17.75</td>
-                        <td class="percentage">19.9%</td>
-                        <td class="percentage">15%</td>
-                        <td class="currency">$700</td>
-                        <td class="currency">$12,425</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">14</td>
-                        <td class="total-row">
-                        <td><strong>TOTAL</strong></td>
-                        <td class="number-cell"><strong>89.0</strong></td>
-                        <td class="percentage"><strong>100%</strong></td>
-                        <td></td>
-                        <td></td>
-                        <td class="currency"><strong>$80,725</strong></td>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">15</td>
-                        <td colspan="6"></td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">16</td>
-                        <td class="section-header" colspan="6"><strong>KEY PERFORMANCE INDICATORS (KPIs)</strong></td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">17</td>
-                        <th>KPI</th>
-                        <th>Current</th>
-                        <th>Target</th>
-                        <th>Threshold</th>
-                        <th>Status</th>
-                        <th>Action Required</th>
-                    </tr>
-                    <tr>
-                        <td class="row-header">18</td>
-                        <td class="text-cell">Schedule Performance Index</td>
-                        <td class="number-cell">1.0</td>
-                        <td class="number-cell">1.0</td>
-                        <td class="number-cell">0.9</td>
-                        <td class="center-cell">✓ Green</td>
-                        <td class="text-cell">None</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">19</td>
-                        <td class="text-cell">Cost Performance Index</td>
-                        <td class="number-cell">1.0</td>
-                        <td class="number-cell">1.0</td>
-                        <td class="number-cell">0.9</td>
-                        <td class="center-cell">✓ Green</td>
-                        <td class="text-cell">None</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">20</td>
-                        <td class="text-cell">Risk Score (Weighted)</td>
-                        <td class="number-cell">3.2</td>
-                        <td class="number-cell">
-                            < 4.0</td>
-                        <td class="number-cell">5.0</td>
-                        <td class="center-cell">⚠ Yellow</td>
-                        <td class="text-cell">Monitor OAuth integration</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">21</td>
-                        <td class="text-cell">Team Velocity Consistency</td>
-                        <td class="percentage">85%</td>
-                        <td class="percentage">90%</td>
-                        <td class="percentage">70%</td>
-                        <td class="center-cell">✓ Green</td>
-                        <td class="text-cell">Maintain current pace</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">22</td>
-                        <td class="text-cell">Code Coverage Target</td>
-                        <td class="percentage">0%</td>
-                        <td class="percentage">80%</td>
-                        <td class="percentage">70%</td>
-                        <td class="center-cell">⭕ Not Started</td>
-                        <td class="text-cell">Set up testing framework</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">23</td>
-                        <td colspan="6"></td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">24</td>
-                        <td class="section-header" colspan="6"><strong>BUDGET SUMMARY</strong></td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">25</td>
-                        <th>Cost Category</th>
-                        <th>Amount</th>
-                        <th>Percentage</th>
-                        <th>Budget</th>
-                        <th>Variance</th>
-                        <th>Status</th>
-                    </tr>
-                    <tr>
-                        <td class="row-header">26</td>
-                        <td class="text-cell">Personnel Costs</td>
-                        <td class="currency">$80,725</td>
-                        <td class="percentage">85%</td>
-                        <td class="currency">$85,000</td>
-                        <td class="currency">$4,275</td>
-                        <td class="center-cell">✓ Under Budget</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">27</td>
-                        <td class="text-cell">Infrastructure & Tools</td>
-                        <td class="currency">$8,000</td>
-                        <td class="percentage">8.5%</td>
-                        <td class="currency">$10,000</td>
-                        <td class="currency">$2,000</td>
-                        <td class="center-cell">✓ Under Budget</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">28</td>
-                        <td class="text-cell">Contingency (20%)</td>
-                        <td class="currency">$6,145</td>
-                        <td class="percentage">6.5%</td>
-                        <td class="currency">$19,000</td>
-                        <td class="currency">$12,855</td>
-                        <td class="center-cell">✓ Reserve Available</td>
-                    </tr>
-                    <tr>
-                        <td class="row-header">29</td>
-                        <td class="total-row">
-                        <td><strong>TOTAL PROJECT COST</strong></td>
-                        <td class="currency"><strong>$94,870</strong></td>
-                        <td class="percentage"><strong>100%</strong></td>
-                        <td class="currency"><strong>$114,000</strong></td>
-                        <td class="currency"><strong>$19,130</strong></td>
-                        <td class="center-cell"><strong>✓ Under Budget</strong></td>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
+<!-- Sheet 4: Risk Analysis -->
+<div id="sheet4" class="sheet-content">
+    <div class="header-info">
+        <h2>Risk Analysis & Mitigation</h2>
+        <p>Comprehensive risk assessment with mitigation strategies</p>
+    </div>
+    <table>
+        <tr>
+            <td class="row-header">Row</td>
+            <td class="column-header">A</td>
+            <td class="column-header">B</td>
+            <td class="column-header">C</td>
+            <td class="column-header">D</td>
+            <td class="column-header">E</td>
+            <td class="column-header">F</td>
+            <td class="column-header">G</td>
+            <td class="column-header">H</td>
+        </tr>
+        <tr>
+            <td class="row-header">1</td>
+            <th>Risk Category</th>
+            <th>Risk Description</th>
+            <th>Probability</th>
+            <th>Impact</th>
+            <th>Risk Score</th>
+            <th>Mitigation Strategy</th>
+            <th>Contingency Plan</th>
+            <th>Owner</th>
+        </tr>
+        <tr>
+            <td class="row-header">2</td>
+            <td class="section-header" colspan="8"><strong>HIGH RISK ITEMS</strong></td>
+        </tr>
+        <tr>
+            <td class="row-header">3</td>
+            <td class="text-cell">Technical</td>
+            <td class="text-cell">OAuth Integration Complexity</td>
+            <td class="percentage">70%</td>
+            <td class="number-cell">8</td>
+            <td class="number-cell">5.6</td>
+            <td class="text-cell">Start OAuth early, use Firebase Auth</td>
+            <td class="text-cell">Implement basic auth as backup</td>
+            <td class="text-cell">Tech Lead</td>
+        </tr>
+        <tr>
+            <td class="row-header">4</td>
+            <td class="text-cell">Technical</td>
+            <td class="text-cell">Push Notification Platform Issues</td>
+            <td class="percentage">60%</td>
+            <td class="number-cell">7</td>
+            <td class="number-cell">4.2</td>
+            <td class="text-cell">Use proven FCM service</td>
+            <td class="text-cell">Local notifications only for MVP</td>
+            <td class="text-cell">Mobile Dev</td>
+        </tr>
+        <tr>
+            <td class="row-header">5</td>
+            <td class="text-cell">Compliance</td>
+            <td class="text-cell">HIPAA Compliance Requirements</td>
+            <td class="percentage">50%</td>
+            <td class="number-cell">9</td>
+            <td class="number-cell">4.5</td>
+            <td class="text-cell">Consult legal early, use AWS HIPAA</td>
+            <td class="text-cell">Reduce data collection scope</td>
+            <td class="text-cell">Project Manager</td>
+        </tr>
+        <tr>
+            <td class="row-header">6</td>
+            <td class="section-header" colspan="8"><strong>MEDIUM RISK ITEMS</strong></td>
+        </tr>
+        <tr>
+            <td class="row-header">7</td>
+            <td class="text-cell">Technical</td>
+            <td class="text-cell">Cross-platform Compatibility</td>
+            <td class="percentage">40%</td>
+            <td class="number-cell">6</td>
+            <td class="number-cell">2.4</td>
+            <td class="text-cell">Use React Native framework</td>
+            <td class="text-cell">Prioritize one platform for MVP</td>
+            <td class="text-cell">Mobile Dev</td>
+        </tr>
+        <tr>
+            <td class="row-header">8</td>
+            <td class="text-cell">Performance</td>
+            <td class="text-cell">Database Performance Issues</td>
+            <td class="percentage">30%</td>
+            <td class="number-cell">7</td>
+            <td class="number-cell">2.1</td>
+            <td class="text-cell">Implement indexing early</td>
+            <td class="text-cell">Use database optimization tools</td>
+            <td class="text-cell">Backend Dev</td>
+        </tr>
+        <tr>
+            <td class="row-header">9</td>
+            <td class="text-cell">UX</td>
+            <td class="text-cell">Complex User Interface</td>
+            <td class="percentage">35%</td>
+            <td class="number-cell">5</td>
+            <td class="number-cell">1.75</td>
+            <td class="text-cell">Early user testing sessions</td>
+            <td class="text-cell">Simplify UI for MVP</td>
+            <td class="text-cell">UX Designer</td>
+        </tr>
+        <tr>
+            <td class="row-header">10</td>
+            <td class="section-header" colspan="8"><strong>LOW RISK ITEMS</strong></td>
+        </tr>
+        <tr>
+            <td class="row-header">11</td>
+            <td class="text-cell">Technical</td>
+            <td class="text-cell">Basic CRUD Operations</td>
+            <td class="percentage">10%</td>
+            <td class="number-cell">3</td>
+            <td class="number-cell">0.3</td>
+            <td class="text-cell">Use established frameworks</td>
+            <td class="text-cell">Standard implementation</td>
+            <td class="text-cell">Developer</td>
+        </tr>
+        <tr>
+            <td class="row-header">12</td>
+            <td class="text-cell">Technical</td>
+            <td class="text-cell">PDF Report Generation</td>
+            <td class="percentage">15%</td>
+            <td class="number-cell">4</td>
+            <td class="number-cell">0.6</td>
+            <td class="text-cell">Use jsPDF library</td>
+            <td class="text-cell">Simple text reports</td>
+            <td class="text-cell">Frontend Dev</td>
+        </tr>
+        <tr>
+            <td class="row-header">13</td>
+            <td colspan="8"></td>
+        </tr>
+        <tr>
+            <td class="row-header">14</td>
+            <td class="section-header" colspan="8"><strong>KEY ASSUMPTIONS</strong></td>
+        </tr>
+        <tr>
+            <td class="row-header">15</td>
+            <th>Category</th>
+            <th>Assumption</th>
+            <th>Confidence</th>
+            <th>Impact if Wrong</th>
+            <th>Validation Method</th>
+            <th>Validation Date</th>
+            <th>Status</th>
+            <th>Notes</th>
+        </tr>
+        <tr>
+            <td class="row-header">16</td>
+            <td class="text-cell">Technical</td>
+            <td class="text-cell">Team has React Native experience</td>
+            <td class="percentage">80%</td>
+            <td class="number-cell">7</td>
+            <td class="text-cell">Skills assessment</td>
+            <td class="text-cell">Week 1</td>
+            <td class="text-cell">Pending</td>
+            <td class="text-cell">Critical for timeline</td>
+        </tr>
+        <tr>
+            <td class="row-header">17</td>
+            <td class="text-cell">Business</td>
+            <td class="text-cell">Requirements are stable</td>
+            <td class="percentage">70%</td>
+            <td class="number-cell">8</td>
+            <td class="text-cell">Stakeholder agreement</td>
+            <td class="text-cell">Week 1</td>
+            <td class="text-cell">Pending</td>
+            <td class="text-cell">High change risk</td>
+        </tr>
+        <tr>
+            <td class="row-header">18</td>
+            <td class="text-cell">Resource</td>
+            <td class="text-cell">Team available full-time</td>
+            <td class="percentage">90%</td>
+            <td class="number-cell">9</td>
+            <td class="text-cell">Resource planning</td>
+            <td class="text-cell">Week 1</td>
+            <td class="text-cell">Confirmed</td>
+            <td class="text-cell">No competing priorities</td>
+        </tr>
+        <tr>
+            <td class="row-header">19</td>
+            <td class="text-cell">Technical</td>
+            <td class="text-cell">Cloud infrastructure approved</td>
+            <td class="percentage">85%</td>
+            <td class="number-cell">6</td>
+            <td class="text-cell">Budget approval</td>
+            <td class="text-cell">Week 1</td>
+            <td class="text-cell">Pending</td>
+            <td class="text-cell">AWS/Azure decision needed</td>
+        </tr>
+    </table>
+</div>
 
-        <script>
-            function showSheet(sheetId) {
-                // Hide all sheets
-                const sheets = document.querySelectorAll('.sheet-content');
-                sheets.forEach(sheet => sheet.classList.remove('active'));
+<!-- Sheet 5: Summary Dashboard -->
+<div id="sheet5" class="sheet-content">
+    <div class="header-info">
+        <h2>Executive Summary Dashboard</h2>
+        <p>Key metrics and KPIs for project tracking</p>
+    </div>
+    <table>
+        <tr>
+            <td class="row-header">Row</td>
+            <td class="column-header">A</td>
+            <td class="column-header">B</td>
+            <td class="column-header">C</td>
+            <td class="column-header">D</td>
+            <td class="column-header">E</td>
+            <td class="column-header">F</td>
+        </tr>
+        <tr>
+            <td class="row-header">1</td>
+            <td class="section-header" colspan="6"><strong>PROJECT OVERVIEW</strong></td>
+        </tr>
+        <tr>
+            <td class="row-header">2</td>
+            <th>Metric</th>
+            <th>Value</th>
+            <th>Unit</th>
+            <th>Target</th>
+            <th>Status</th>
+            <th>Comments</th>
+        </tr>
+        <tr>
+            <td class="row-header">3</td>
+            <td class="text-cell">Total Project Duration</td>
+            <td class="number-cell">12</td>
+            <td class="text-cell">Weeks</td>
+            <td class="number-cell">12</td>
+            <td class="center-cell">✓ On Track</td>
+            <td class="text-cell">Includes 20% buffer</td>
+        </tr>
+        <tr>
+            <td class="row-header">4</td>
+            <td class="text-cell">Total Story Points</td>
+            <td class="number-cell">89</td>
+            <td class="text-cell">Points</td>
+            <td class="number-cell">85-95</td>
+            <td class="center-cell">✓ On Track</td>
+            <td class="text-cell">Within expected range</td>
+        </tr>
+        <tr>
+            <td class="row-header">5</td>
+            <td class="text-cell">Total Effort</td>
+            <td class="number-cell">89</td>
+            <td class="text-cell">Man-Days</td>
+            <td class="number-cell">80-100</td>
+            <td class="center-cell">✓ On Track</td>
+            <td class="text-cell">Balanced across roles</td>
+        </tr>
+        <tr>
+            <td class="row-header">6</td>
+            <td class="text-cell">Team Size</td>
+            <td class="number-cell">6</td>
+            <td class="text-cell">People</td>
+            <td class="number-cell">5-7</td>
+            <td class="center-cell">✓ Optimal</td>
+            <td class="text-cell">Right size for project</td>
+        </tr>
+        <tr>
+            <td class="row-header">7</td>
+            <td class="text-cell">Average Velocity</td>
+            <td class="number-cell">18</td>
+            <td class="text-cell">Points/Sprint</td>
+            <td class="number-cell">15-20</td>
+            <td class="center-cell">✓ Good</td>
+            <td class="text-cell">Based on team capacity</td>
+        </tr>
+        <tr>
+            <td class="row-header">8</td>
+            <td colspan="6"></td>
+        </tr>
+        <tr>
+            <td class="row-header">9</td>
+            <td class="section-header" colspan="6"><strong>EFFORT BREAKDOWN BY ROLE</strong></td>
+        </tr>
+        <tr>
+            <td class="row-header">10</td>
+            <th>Role</th>
+            <th>Days</th>
+            <th>Percentage</th>
+            <th>Utilization</th>
+            <th>Cost Rate</th>
+            <th>Total Cost</th>
+        </tr>
+        <tr>
+            <td class="row-header">11</td>
+            <td class="text-cell">Business Analyst</td>
+            <td class="number-cell">36.0</td>
+            <td class="percentage">16.1%</td>
+            <td class="percentage">26%</td>
+            <td class="currency">$800</td>
+            <td class="currency">$28,800</td>
+        </tr>
+        <tr>
+            <td class="row-header">12</td>
+            <td class="text-cell">Senior Developers</td>
+            <td class="number-cell">140.0</td>
+            <td class="percentage">62.5%</td>
+            <td class="percentage">20%</td>
+            <td class="currency">$1,000</td>
+            <td class="currency">$140,000</td>
+        </tr>
+        <tr>
+            <td class="row-header">13</td>
+            <td class="text-cell">QA Engineers</td>
+            <td class="number-cell">48.0</td>
+            <td class="percentage">21.4%</td>
+            <td class="percentage">11%</td>
+            <td class="currency">$700</td>
+            <td class="currency">$33,600</td>
+        </tr>
+        <tr>
+            <td class="row-header">14</td>
+            <td class="total-row">
+            <td><strong>TOTAL</strong></td>
+            <td class="number-cell"><strong>224.0</strong></td>
+            <td class="percentage"><strong>100%</strong></td>
+            <td></td>
+            <td></td>
+            <td class="currency"><strong>$202,400</strong></td>
+            </td>
+        </tr>
+        <tr>
+            <td class="row-header">15</td>
+            <td colspan="6"></td>
+        </tr>
+        <tr>
+            <td class="row-header">16</td>
+            <td class="section-header" colspan="6"><strong>KEY PERFORMANCE INDICATORS (KPIs)</strong></td>
+        </tr>
+        <tr>
+            <td class="row-header">17</td>
+            <th>KPI</th>
+            <th>Current</th>
+            <th>Target</th>
+            <th>Threshold</th>
+            <th>Status</th>
+            <th>Action Required</th>
+        </tr>
+        <tr>
+            <td class="row-header">18</td>
+            <td class="text-cell">Schedule Performance Index</td>
+            <td class="number-cell">1.0</td>
+            <td class="number-cell">1.0</td>
+            <td class="number-cell">0.9</td>
+            <td class="center-cell">✓ Green</td>
+            <td class="text-cell">None</td>
+        </tr>
+        <tr>
+            <td class="row-header">19</td>
+            <td class="text-cell">Cost Performance Index</td>
+            <td class="number-cell">1.0</td>
+            <td class="number-cell">1.0</td>
+            <td class="number-cell">0.9</td>
+            <td class="center-cell">✓ Green</td>
+            <td class="text-cell">None</td>
+        </tr>
+        <tr>
+            <td class="row-header">20</td>
+            <td class="text-cell">Risk Score (Weighted)</td>
+            <td class="number-cell">3.2</td>
+            <td class="number-cell">
+                < 4.0</td>
+            <td class="number-cell">5.0</td>
+            <td class="center-cell">⚠ Yellow</td>
+            <td class="text-cell">Monitor OAuth integration</td>
+        </tr>
+        <tr>
+            <td class="row-header">21</td>
+            <td class="text-cell">Team Velocity Consistency</td>
+            <td class="percentage">85%</td>
+            <td class="percentage">90%</td>
+            <td class="percentage">70%</td>
+            <td class="center-cell">✓ Green</td>
+            <td class="text-cell">Maintain current pace</td>
+        </tr>
+        <tr>
+            <td class="row-header">22</td>
+            <td class="text-cell">Code Coverage Target</td>
+            <td class="percentage">0%</td>
+            <td class="percentage">80%</td>
+            <td class="percentage">70%</td>
+            <td class="center-cell">⭕ Not Started</td>
+            <td class="text-cell">Set up testing framework</td>
+        </tr>
+        <tr>
+            <td class="row-header">23</td>
+            <td colspan="6"></td>
+        </tr>
+        <tr>
+            <td class="row-header">24</td>
+            <td class="section-header" colspan="6"><strong>BUDGET SUMMARY</strong></td>
+        </tr>
+        <tr>
+            <td class="row-header">25</td>
+            <th>Cost Category</th>
+            <th>Amount</th>
+            <th>Percentage</th>
+            <th>Budget</th>
+            <th>Variance</th>
+            <th>Status</th>
+        </tr>
+        <tr>
+            <td class="row-header">26</td>
+            <td class="text-cell">Personnel Costs</td>
+            <td class="currency">$202,400</td>
+            <td class="percentage">85%</td>
+            <td class="currency">$220,000</td>
+            <td class="currency">$17,600</td>
+            <td class="center-cell">✓ Under Budget</td>
+        </tr>
+        <tr>
+            <td class="row-header">27</td>
+            <td class="text-cell">Infrastructure & Tools</td>
+            <td class="currency">$25,000</td>
+            <td class="percentage">10.5%</td>
+            <td class="currency">$30,000</td>
+            <td class="currency">$5,000</td>
+            <td class="center-cell">✓ Under Budget</td>
+        </tr>
+        <tr>
+            <td class="row-header">28</td>
+            <td class="text-cell">Contingency (20%)</td>
+            <td class="currency">$10,740</td>
+            <td class="percentage">4.5%</td>
+            <td class="currency">$50,000</td>
+            <td class="currency">$39,260</td>
+            <td class="center-cell">✓ Reserve Available</td>
+        </tr>
+        <tr>
+            <td class="row-header">29</td>
+            <td class="total-row">
+            <td><strong>TOTAL PROJECT COST</strong></td>
+            <td class="currency"><strong>$238,140</strong></td>
+            <td class="percentage"><strong>100%</strong></td>
+            <td class="currency"><strong>$300,000</strong></td>
+            <td class="currency"><strong>$61,860</strong></td>
+            <td class="center-cell"><strong>✓ Under Budget</strong></td>
+            </td>
+        </tr>
+    </table>
+</div>
+</div>
 
-                // Remove active class from all tabs
-                const tabs = document.querySelectorAll('.sheet-tab');
-                tabs.forEach(tab => tab.classList.remove('active'));
+<script>
+    function showSheet(sheetId) {
+        // Hide all sheets
+        const sheets = document.querySelectorAll('.sheet-content');
+        sheets.forEach(sheet => sheet.classList.remove('active'));
 
-                // Show selected sheet
-                document.getElementById(sheetId).classList.add('active');
+        // Remove active class from all tabs
+        const tabs = document.querySelectorAll('.sheet-tab');
+        tabs.forEach(tab => tab.classList.remove('active'));
 
-                // Add active class to clicked tab
-                event.target.classList.add('active');
-            }
+        // Show selected sheet
+        document.getElementById(sheetId).classList.add('active');
 
-            // Add Excel-like interactions
-            document.addEventListener('DOMContentLoaded', function () {
-                // Add hover effects to cells
-                const cells = document.querySelectorAll('td, th');
-                cells.forEach(cell => {
-                    cell.addEventListener('mouseenter', function () {
-                        this.style.backgroundColor = '#e6f3ff';
-                    });
-                    cell.addEventListener('mouseleave', function () {
-                        this.style.backgroundColor = '';
-                    });
-                });
+        // Add active class to clicked tab
+        event.target.classList.add('active');
+    }
+
+    // Add Excel-like interactions
+    document.addEventListener('DOMContentLoaded', function () {
+        // Add hover effects to cells
+        const cells = document.querySelectorAll('td, th');
+        cells.forEach(cell => {
+            cell.addEventListener('mouseenter', function () {
+                this.style.backgroundColor = '#e6f3ff';
             });
-        </script>
-    </body>
+            cell.addEventListener('mouseleave', function () {
+                this.style.backgroundColor = '';
+            });
+        });
+    });
+</script>
+</body>
 
 </html>
 <tr>
